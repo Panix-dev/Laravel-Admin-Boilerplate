@@ -32,6 +32,7 @@ let generateProject = project => {
 ## Contacts
 
 > https://pagapiou.com
+
 > hello@pagapiou.com :sleeping:
 
 ## Inspiration
