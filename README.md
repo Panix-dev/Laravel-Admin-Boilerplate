@@ -8,7 +8,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 > If your `README` has a lot of info, section headers might be nice.
 
-- [Video Parameters](#videoparameters)
+- [Video Parameters](#video_parameters)
 - [Contacts](#contacts)
 - [Inspiration](#inspiration)
 
