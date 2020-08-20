@@ -16,6 +16,10 @@ This repo contains the structure for an admin dashboard using the Laravel framew
 
 
 - [Gentelella Admin Theme](#gentelella-admin-theme)
+- [Model Relationships](#model-relationships)
+- [Storing Images](#storing-images)
+- [Flash Messages](#flash-messages)
+- [Admin Middleware](#admin-middleware)
 
 - [Contact Details](#contact-details)
 
@@ -28,11 +32,70 @@ Gentelella Admin is a free to use Bootstrap admin template. This template uses t
 - :link: [Gentelella Admin Theme](https://github.com/ColorlibHQ/gentelella)
 
 
-## Example Services
+## Model Relationships
 
 
-```javascript
+```php
+public function movietags() {
 
+	return $this->belongsToMany('App\Movietag', 'movie_movietag', 'movie_id', 'movietag_id');
+
+}
+
+public function moviecategory() {
+
+	return $this->belongsTo('App\Moviecategory', 'category_id');
+
+}
+
+public function items() {
+
+	return $this->belongsToMany('App\Item', 'item_movie', 'movie_id', 'item_id')->withPivot('item_id');
+
+}
+```
+
+
+## Storing Images
+
+
+```php
+if ($request->hasFile('featured_image')) {
+    $image = $request->file('featured_image');
+    $filename = time().'.'.$image->getClientOriginalExtension();
+    $location_preset = public_path('images_items/list_large/'.$filename);
+    $location_preset_item = public_path('images_items/list_small/'.$filename);
+    Image::make($image)->resize(702, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->crop(702,400)->save($location_preset);
+    Image::make($image)->resize(445, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->crop(445,245)->save($location_preset_item);
+}
+
+$item->image = $filename;
+```
+
+
+## Flash Messages
+
+
+```php
+Notify::success('The modifications performed to the item have been updated successfully!', 'Item has been updated');
+```
+
+
+## Admin Middleware
+
+
+```php
+public function handle($request, Closure $next)
+{
+    if (Auth::user() &&  Auth::user()->user_type == 'admin') {
+    	return $next($request);
+    }
+    return redirect('/');
+}
 ```
 
 
