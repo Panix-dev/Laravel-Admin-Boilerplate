@@ -2,7 +2,7 @@
 
 > A boilerplate ready to use for your custom dashboard projects using Laravel
 
-This repo contains the structure for an admin dashboard using the Laravel framework.
+An admin panel including a vast variety of specifications and automations based on the Laravel PHP framework. For further discussion on the features contained please don’t hesitate to contact me for a chat. A few of the core features include email automation, internal messaging, user and contact management, store / client map locator, document library, product management, task management between users, user roles and levels of administration, reports, social login, CRUD notifications, ability to handle stripe payments and more
 
 
 <br/>
